@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <Entities>
+    <Path>../../../Common/Entities</Path>
+
+    <!--
+    <ExcludedEntities>
+      <ExcludedEntity>../../../Common/Entities/Base/BaseEntity.cs</ExcludedEntity>
+    </ExcludedEntities>
+    -->
+    
+    <Namespaces>
+      <Namespace>BikeInventory.Application.Common.Entities</Namespace>
+    </Namespaces>    
+  </Entities>
+  
+  <IDbContext>
+    <Name>IBikeInventoryDbContext</Name>
+    <Namespace>BikeInventory.Application.Common.Interfaces</Namespace>
+  </IDbContext>
+</root>

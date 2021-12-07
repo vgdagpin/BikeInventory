@@ -1,0 +1,2 @@
+https://demos.telerik.com/aspnet-core/grid
+

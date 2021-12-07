@@ -1,0 +1,15 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+using BikeInventory.Models;
+
+namespace BikeInventory.Interfaces
+{
+    public interface IBikeModelRepository  : IGenericRepository<BikeModel>
+    {
+        IEnumerable<BikeModel> GetAll(Func<BikeModel, bool> filter = null);
+    }
+}

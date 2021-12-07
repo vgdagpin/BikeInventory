@@ -1,0 +1,126 @@
+<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System.Xml.Linq" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Xml" #>
+<#@ import namespace="System.Xml.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.IO" #>
+<#@ output extension=".cs" #>
+<#
+var t4File = this.Host.TemplateFile;
+var entitiesPath= Path.GetDirectoryName(t4File);
+var configPath = Path.ChangeExtension(t4File, "xml");
+
+var xDoc = XDocument.Load(configPath);
+var xConfig = (from c in xDoc.Descendants("root")
+            select new
+            {
+                IDbContext = c.Elements("IDbContext")
+                    .Select(idbc => new
+                    {
+                        Name = idbc.Element("Name").Value,
+                        Namespace = idbc.Element("Namespace").Value
+                    }).FirstOrDefault(),
+                Entities = c.Elements("Entities")
+                .Select(ents => new
+                {
+                    Path = ents.Element("Path").Value,
+                    Namespaces = ents.Elements("Namespaces")
+                        .Elements("Namespace")    
+                        .Select(ns => ns.Value)
+                        .ToList(),
+                    ExcludedEntities = ents.Elements("ExcludedEntities")
+                        .Elements("ExcludedEntity")
+                        .Select(ns => ns.Value)
+                        .ToList(),
+                }).FirstOrDefault()
+            })
+            .FirstOrDefault();
+                             
+var entitiesDirectory = Path.GetFullPath(Path.Combine(entitiesPath,xConfig.Entities.Path));
+var excludedPath = xConfig.Entities.ExcludedEntities;                 
+var excludedTypes = excludedPath != null
+    ? excludedPath.Select(a => Path.GetFullPath(Path.Combine(entitiesPath, a)))
+    : new List<string>().ToArray();
+var entities = Directory.GetFiles(entitiesDirectory, "*.cs", SearchOption.AllDirectories)
+    .OrderBy(a => Path.GetFileNameWithoutExtension(a));
+#>
+using System;
+using System.Linq;
+using System.Diagnostics.CodeAnalysis;
+using System.Threading;
+using System.Threading.Tasks;
+
+<# foreach (var ns in xConfig.Entities.Namespaces) { 
+#>
+using <#= ns #>;
+<# } #>
+
+
+/*
+Do not modify this file! This is auto generated!
+Any changes to this file will be gone when template gets generated again.
+Version: 2.0
+*/
+
+namespace <#= xConfig.IDbContext.Namespace #>
+{
+    public partial interface <#= xConfig.IDbContext.Name #>
+    {
+        Guid UID { get; }
+        bool HasSeedData { get; set; }
+
+        #region Entities
+<# foreach (var entity in entities) { if (excludedTypes.Contains(entity)) continue; #>
+        IQueryable<<#= GetEntityType(entity) #>> <#= GetEntityName(entity, pluralized:true) #> { get; }
+<# } #>
+        #endregion
+
+        int SaveChanges();
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
+    }
+}
+
+
+<#+
+string GetEntityType(string filePath)
+{
+    return Path.GetFileNameWithoutExtension(filePath);
+}
+
+string GetEntityName(string filePath, bool pluralized = false)
+{
+    var temp = Path.GetFileNameWithoutExtension(filePath);
+
+    if (temp.StartsWith("tbl_"))
+    {
+        temp = temp.Substring(4);
+    }
+
+    if (pluralized)
+    {
+        return Pluralize(temp);
+    }
+
+    return temp;
+}
+
+string Pluralize(string input)
+{
+    string _retVal = input ?? "";
+
+    if (_retVal.Trim() == "") return "";
+    if(_retVal.EndsWith("Data")) return _retVal;
+    if(_retVal.EndsWith("ch")) return _retVal + "es";
+    if(_retVal.EndsWith("sis")) return _retVal.Substring(0, _retVal.Length - 3) + "ses";
+    if  (_retVal.EndsWith("s")) return _retVal + "es";
+    if (_retVal.EndsWith("ay")) return _retVal + "s";
+    if (_retVal.EndsWith("y")) return _retVal.Substring(0, _retVal.Length - 1) + "ies";
+
+    return _retVal + "s";
+}
+#>
+
