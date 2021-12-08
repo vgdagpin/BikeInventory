@@ -10,8 +10,8 @@
 
 <div>
     <form asp-controller="Account" asp-action="Login" asp-antiforgery="true">
-        <input asp-for="Username" type="text" />
-        <input asp-for="Password" type="password" />
+        <input asp-for="Username" type="text" placeholder="Username" />
+        <input asp-for="Password" type="password" placeholder="Password" />
 
         <button type="submit">Login</button>
     </form>

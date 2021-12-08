@@ -5,6 +5,7 @@ using BikeInventory.Kiosk.Models;
 
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BikeInventory.Kiosk.Controllers
@@ -39,18 +40,7 @@ namespace BikeInventory.Kiosk.Controllers
                 return View(login);
             }
 
-            var identity = new ClaimsIdentity(new[]
-            {
-                new Claim(ClaimTypes.Name, login.Username)
-            });
-
-            var user = await p_UserManager.GetUserAsync(new ClaimsPrincipal(identity));
-            
-            if (user == null)
-            {
-                return Unauthorized();
-            }
-
+            var user = await p_UserManager.FindByNameAsync(login.Username);
             var result = await p_SignInManager.PasswordSignInAsync(user, login.Password, login.IsPersistent, false);
 
             if (!result.Succeeded)
@@ -58,14 +48,25 @@ namespace BikeInventory.Kiosk.Controllers
                 return Unauthorized();
             }
 
-            var principal = new ClaimsPrincipal(new ClaimsIdentity(new[]
-                {
-                    new Claim(ClaimTypes.Name, user.UserName)
-                }, "Test"));
-
-            await HttpContext.SignInAsync(principal);
-
             return Redirect("/");
+        }
+
+        public async Task<IActionResult> Logout(string returnUrl = "/")
+        {
+            await p_SignInManager.SignOutAsync();
+
+            return LocalRedirect(returnUrl);
+        }
+
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        [Authorize]
+        public IActionResult Manage()
+        {
+            return View();
         }
     }
 }

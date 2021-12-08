@@ -1,5 +1,6 @@
 ﻿using BikeInventory.Kiosk.Models;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using System.Diagnostics;
@@ -16,6 +17,27 @@ namespace BikeInventory.Kiosk.Controllers
         }
 
         public IActionResult Index()
+        {
+            if (User.IsInRole(Constants.UserRoles.Admin))
+            {
+                return Redirect("/Home/AdminHome");
+            }
+            else if (User.IsInRole(Constants.UserRoles.Staff))
+            {
+                return Redirect("/Home/StaffHome");
+            }
+
+            return View();
+        }
+
+        [Authorize(Policy = Constants.Policy.Staff)]
+        public IActionResult StaffHome()
+        {
+            return View();
+        }
+
+        [Authorize(Policy = Constants.Policy.Administrator)]
+        public IActionResult AdminHome()
         {
             return View();
         }

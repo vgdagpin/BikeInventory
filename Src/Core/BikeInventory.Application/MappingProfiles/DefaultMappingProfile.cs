@@ -17,7 +17,9 @@ namespace BikeInventory.Application.MappingProfiles
         {
             RecognizePrefixes("N_");
 
-            CreateMap<tbl_User, User>();
+            CreateMap<tbl_User, User>()
+                .ForMember(a => a.Roles, a => a.MapFrom(b => b.N_UserRoles.Select(r => r.Role)));
+
             CreateMap<tbl_Bike, Bike>();
             CreateMap<tbl_BikeModel, BikeModel>();
         }
