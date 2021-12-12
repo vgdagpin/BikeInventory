@@ -19,16 +19,12 @@ namespace BikeInventory.Infrastructure.Persistence.Configurations
         protected override void ConfigureProperty(BasePropertyBuilder<tbl_UserCredential> builder)
         {
             builder.Property(a => a.TemporaryPassword)
-                .HasMaxLength(100);
-
-            builder.Property(a => a.Username)
-                .IsRequired()
-                .HasMaxLength(200);
+                .HasMaxLength(100);            
         }
 
         protected override void ConfigureRelationship(BaseRelationshipBuilder<tbl_UserCredential> builder)
         {
-            builder.HasOne<tbl_User>()
+            builder.HasOne(a => a.N_User)
                 .WithOne(a => a.N_UserCredential)
                 .HasForeignKey<tbl_UserCredential>(a => a.ID);
         }
@@ -41,7 +37,6 @@ namespace BikeInventory.Infrastructure.Persistence.Configurations
             builder.HasData(new tbl_UserCredential
             {
                 ID = -1,
-                Username = "admin@bike.com",
                 IsTemporaryPassword=true,
                 TemporaryPassword = "admin",
                 Salt = salt1,
@@ -52,7 +47,6 @@ namespace BikeInventory.Infrastructure.Persistence.Configurations
             builder.HasData(new tbl_UserCredential
             {
                 ID = 1,
-                Username = "staff1@bike.com",
                 IsTemporaryPassword = true,
                 TemporaryPassword = "staff1",
                 Salt = salt2,
@@ -63,7 +57,6 @@ namespace BikeInventory.Infrastructure.Persistence.Configurations
             builder.HasData(new tbl_UserCredential
             {
                 ID = 2,
-                Username = "staff2@bike.com",
                 IsTemporaryPassword = true,
                 TemporaryPassword = "staff2",
                 Salt = salt3,

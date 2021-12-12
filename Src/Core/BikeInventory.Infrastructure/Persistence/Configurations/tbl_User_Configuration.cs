@@ -22,6 +22,13 @@ namespace BikeInventory.Infrastructure.Persistence.Configurations
             builder.Property(a => a.LastName)
                 .IsRequired()
                 .HasMaxLength(100);
+
+            builder.Property(a => a.Username)
+                .HasMaxLength(200);
+
+            builder.Property(a => a.Email)
+                .IsRequired()
+                .HasMaxLength(200);
         }
 
         protected override void SeedData(BaseSeeder<tbl_User> builder)
@@ -30,21 +37,24 @@ namespace BikeInventory.Infrastructure.Persistence.Configurations
             {
                 ID = -1,
                 FirstName = "Super",
-                LastName = "Admin"
+                LastName = "Admin",
+                Email = "admin@bike.com"
             });
 
             builder.HasData(new tbl_User
             {
                 ID = 1,
                 FirstName = "User",
-                LastName = "Staff 1"
+                LastName = "Staff 1",
+                Email = "staff1@bike.com"
             });
 
             builder.HasData(new tbl_User
             {
                 ID = 2,
                 FirstName = "User",
-                LastName = "Staff 2"
+                LastName = "Staff 2",
+                Email = "staff2@bike.com"
             });
         }
     }

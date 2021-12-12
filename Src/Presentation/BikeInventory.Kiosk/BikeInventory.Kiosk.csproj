@@ -23,6 +23,7 @@
     <ProjectReference Include="..\..\Core\BikeInventory.Application\BikeInventory.Application.csproj" />
     <ProjectReference Include="..\..\Core\BikeInventory.Infrastructure\BikeInventory.Infrastructure.csproj" />
     <ProjectReference Include="..\..\Core\BikeInventory\BikeInventory.csproj" />
+    <ProjectReference Include="..\..\Migrations\BikeInventory.DbMigration.SQLite\BikeInventory.DbMigration.SQLite.csproj" />
     <ProjectReference Include="..\..\Migrations\BikeInventory.DbMigration.SqlServer\BikeInventory.DbMigration.SqlServer.csproj" />
   </ItemGroup>
 

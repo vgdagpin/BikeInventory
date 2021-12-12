@@ -10,7 +10,6 @@ namespace BikeInventory.Application.Common.Entities
     {
         public int ID { get; set; }
 
-        public string Username { get; set; }
         public byte[] Salt { get; set; }
         public byte[] Password { get; set; }
         public int FailedLoginCount { get; set; }
@@ -19,5 +18,7 @@ namespace BikeInventory.Application.Common.Entities
 
         public bool IsTemporaryPassword { get; set; }
         public string TemporaryPassword { get; set; }
+
+        public tbl_User N_User { get; set; }
     }
 }

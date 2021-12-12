@@ -31,6 +31,7 @@ namespace BikeInventory.Application.Common.Interfaces
         IQueryable<tbl_RentalTransaction> RentalTransactions { get; }
         IQueryable<tbl_User> Users { get; }
         IQueryable<tbl_UserCredential> UserCredentials { get; }
+        IQueryable<tbl_UserCredit> UserCredits { get; }
         IQueryable<tbl_UserRole> UserRoles { get; }
         #endregion
 

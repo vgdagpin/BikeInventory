@@ -11,6 +11,8 @@ namespace BikeInventory.Application.Common.Entities
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public string LastName { get; set; }
+        public string Username { get; set; }
+        public string Email { get; set; }
 
         public tbl_UserCredential N_UserCredential { get; set; }
         public ICollection<tbl_UserRole> N_UserRoles { get; set; } = new HashSet<tbl_UserRole>();

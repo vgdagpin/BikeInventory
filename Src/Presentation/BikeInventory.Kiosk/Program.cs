@@ -1,7 +1,7 @@
 using BikeInventory.Kiosk;
 
 var app = WebApplication.CreateBuilder(args)
-    .AddBikeInventoryDependencies()
+    .AddBikeInventoryServices()
     .Build();
 
 // Configure the HTTP request pipeline.

@@ -27,7 +27,7 @@ namespace BikeInventory.Kiosk.Common
             var userData = await p_DbContext.Users
                 .Include(a => a.N_UserRoles)
                 .Include(a => a.N_UserCredential)
-                .SingleAsync(a => a.N_UserCredential.Username == user.UserName);
+                .SingleAsync(a => (a.Username ?? a.Email) == user.UserName);
 
             var mUserData = p_Mapper.Map<User>(userData);
 

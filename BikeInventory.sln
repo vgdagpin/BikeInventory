@@ -47,7 +47,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BikeInventory.PaymentGatewa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BikeInventory.PaymentGateway.GCash", "Src\Presentation\Services\BikeInventory.PaymentGateway.GCash\BikeInventory.PaymentGateway.GCash.csproj", "{A6ECBF54-BC3A-475F-89C0-17FDD8584EC1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BikeInventory.Kiosk", "Src\Presentation\BikeInventory.Kiosk\BikeInventory.Kiosk.csproj", "{01329136-2E41-460C-82E3-D60C8750E293}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BikeInventory.Kiosk", "Src\Presentation\BikeInventory.Kiosk\BikeInventory.Kiosk.csproj", "{01329136-2E41-460C-82E3-D60C8750E293}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Template", "Template", "{A1521D51-E847-4A8C-B560-EDC6A8E28974}"
+	ProjectSection(SolutionItems) = preProject
+		Template\BikeInventory.bsdesign = Template\BikeInventory.bsdesign
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

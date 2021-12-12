@@ -93,6 +93,13 @@ namespace BikeInventory.Infrastructure.Persistence
             private set => db_UserCredentials = (DbSet<tbl_UserCredential>)value;
         }
 
+        private DbSet<tbl_UserCredit> db_UserCredits { get; set; }
+        public IQueryable<tbl_UserCredit> UserCredits 
+        { 
+            get => db_UserCredits;
+            private set => db_UserCredits = (DbSet<tbl_UserCredit>)value;
+        }
+
         private DbSet<tbl_UserRole> db_UserRoles { get; set; }
         public IQueryable<tbl_UserRole> UserRoles 
         { 
@@ -123,6 +130,7 @@ namespace BikeInventory.Infrastructure.Persistence.Configurations
     public partial class tbl_RentalTransaction_Configuration : BaseConfiguration<tbl_RentalTransaction> { }
     public partial class tbl_User_Configuration : BaseConfiguration<tbl_User> { }
     public partial class tbl_UserCredential_Configuration : BaseConfiguration<tbl_UserCredential> { }
+    public partial class tbl_UserCredit_Configuration : BaseConfiguration<tbl_UserCredit> { }
     public partial class tbl_UserRole_Configuration : BaseConfiguration<tbl_UserRole> { }
     #endregion
 }

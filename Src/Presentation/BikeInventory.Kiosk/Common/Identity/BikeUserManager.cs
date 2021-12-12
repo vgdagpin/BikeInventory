@@ -7,6 +7,9 @@ using Microsoft.Extensions.Options;
 
 namespace BikeInventory.Kiosk.Common
 {
+    /// <summary>
+    /// https://github.com/dotnet/aspnetcore/blob/main/src/Identity/Extensions.Core/src/UserManager.cs
+    /// </summary>
     public class BikeUserManager : UserManager<IdentityUser>
     {
         private readonly IPasswordHasher p_BikePasswordHasher;

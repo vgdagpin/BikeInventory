@@ -5,13 +5,12 @@ using BikeInventory.Infrastructure;
 using BikeInventory.Kiosk.Common;
 
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace BikeInventory.Kiosk
 {
     public static class DependencyInjection
     {
-        public static WebApplicationBuilder AddBikeInventoryDependencies(this WebApplicationBuilder builder)
+        public static WebApplicationBuilder AddBikeInventoryServices(this WebApplicationBuilder builder)
         {
             var services = builder.Services;
             var configuration = builder.Configuration;
@@ -34,19 +33,20 @@ namespace BikeInventory.Kiosk
             });
 
             services.AddDatabaseDeveloperPageExceptionFilter();
-            services.AddAuthentication("Test_Auth")
-                .AddCookie("Test_Auth", options =>
+            services.AddAuthentication(Constants.IdentityConstants.ApplicationScheme)
+                .AddCookie(Constants.IdentityConstants.ApplicationScheme, options =>
                 {
                     options.LoginPath = "/Account/Login";
                 });
 
             services.AddHttpContextAccessor();
-            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             services.AddDefaultIdentity<IdentityUser>()
                 .AddUserManager<BikeUserManager>()
                 .AddUserStore<BikeUserStore>()
                 .AddClaimsPrincipalFactory<BikeUserClaimsPrincipalFactory>()
                 .AddSignInManager<BikeSignInManager>();
+
 
             services.AddMemoryCache();
             services.AddControllersWithViews();

@@ -17,7 +17,8 @@ namespace BikeInventory.Kiosk.Common
 
         public async override Task<IdentityUser> FindByNameAsync(string normalizedUserName, CancellationToken cancellationToken = default)
         {
-            var userCred = await p_DbContext.UserCredentials.SingleOrDefaultAsync(a => a.Username == normalizedUserName);
+            var userCred = await p_DbContext.UserCredentials
+                .SingleOrDefaultAsync(a => (a.N_User.Username ?? a.N_User.Email) == normalizedUserName);
 
             if (userCred == null) return null;
 

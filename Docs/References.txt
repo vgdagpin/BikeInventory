@@ -1,1 +1,6 @@
 https://stackoverflow.com/a/58243009/403971
+
+https://github.com/dotnet/aspnetcore/tree/main/src/Identity
+
+https://codewithmukesh.com/blog/aspnet-core-api-with-jwt-authentication/
+https://codewithmukesh.com/blog/refresh-tokens-in-aspnet-core/
