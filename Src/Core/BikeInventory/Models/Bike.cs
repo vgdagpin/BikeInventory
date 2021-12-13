@@ -14,5 +14,7 @@ namespace BikeInventory.Models
         public short ModelID { get; set; }
         public BikeStatus Status { get; set; } = BikeStatus.Available;
         public BikeModel Model { get; set; }
+
+        public BikeRate Rate { get; set; }
     }
 }

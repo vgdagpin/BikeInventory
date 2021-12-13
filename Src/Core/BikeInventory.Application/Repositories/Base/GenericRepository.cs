@@ -58,6 +58,18 @@ namespace BikeInventory.Application.Repositories.Base
             throw new NotImplementedException();
         }
 
+        public virtual IQueryable<T> Get(Func<T, bool> filter)
+        {
+            var query = Get();
+
+            if (filter != null)
+            {
+                return query.Where(filter).AsQueryable();
+            }
+
+            return query;
+        }
+
         public virtual T Update(T user, bool autoSave = true)
         {
             throw new NotImplementedException();

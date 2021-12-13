@@ -15,11 +15,28 @@ namespace BikeInventory.Infrastructure.Persistence.Configurations
             builder.HasKey(a => a.ID);
         }
 
-        protected override void ConfigureRelationship(BaseRelationshipBuilder<tbl_Customer> builder)
+        protected override void ConfigureProperty(BasePropertyBuilder<tbl_Customer> builder)
         {
-            builder.HasOne(a => a.N_User)
-                .WithOne()
-                .HasForeignKey<tbl_Customer>(a => a.ID);
+            builder.Property(a => a.FirstName)
+               .IsRequired()
+               .HasMaxLength(100);
+
+            builder.Property(a => a.MiddleName)
+                .HasMaxLength(100);
+
+            builder.Property(a => a.LastName)
+                .IsRequired()
+                .HasMaxLength(100);
+        }
+
+        protected override void SeedData(BaseSeeder<tbl_Customer> builder)
+        {
+            builder.HasData(new tbl_Customer
+            {
+                ID = 1,
+                FirstName = "Customer",
+                LastName = "A"
+            });
         }
     }
 }

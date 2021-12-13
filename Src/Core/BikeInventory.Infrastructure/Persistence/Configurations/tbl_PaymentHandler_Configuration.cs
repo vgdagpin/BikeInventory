@@ -49,23 +49,37 @@ namespace BikeInventory.Infrastructure.Persistence.Configurations
             builder.HasData(new tbl_PaymentHandler
             {
                 ID = 1,
+                ShortDesc = "Credits",
+                LongDesc = "Credits",
+                TaskAssembly = typeof(PaymentCmd).Assembly.FullName,
+                TaskClass = typeof(PaymentCmd).FullName,
+                HandlerAssembly = typeof(PaymentCmdHandler_GCash).Assembly.FullName,
+                HandlerClass = typeof(PaymentCmdHandler_GCash).FullName,
+                IsActive = true
+            });
+
+            builder.HasData(new tbl_PaymentHandler
+            {
+                ID = 2,
                 ShortDesc = "GCash",
                 LongDesc = "GCash",
                 TaskAssembly = typeof(PaymentCmd).Assembly.FullName,
                 TaskClass = typeof(PaymentCmd).FullName,
                 HandlerAssembly = typeof(PaymentCmdHandler_GCash).Assembly.FullName,
                 HandlerClass = typeof(PaymentCmdHandler_GCash).FullName,
+                IsActive = true
             });
 
             builder.HasData(new tbl_PaymentHandler
             {
-                ID = 2,
+                ID = 3,
                 ShortDesc = "Paymaya",
                 LongDesc = "Paymaya",
                 TaskAssembly = typeof(PaymentCmd).Assembly.FullName,
                 TaskClass = typeof(PaymentCmd).FullName,
                 HandlerAssembly = typeof(PaymentCmdHandler_Paymaya).Assembly.FullName,
                 HandlerClass = typeof(PaymentCmdHandler_Paymaya).FullName,
+                IsActive = true
             });
         }
     }

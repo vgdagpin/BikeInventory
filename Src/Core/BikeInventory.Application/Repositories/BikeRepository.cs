@@ -41,5 +41,25 @@ namespace BikeInventory.Application.Repositories
                 .ProjectTo<Bike>(m_Mapper.ConfigurationProvider)
                 .ToList();
         }
+
+        public override Bike Find(object identity)
+        {
+            if (identity == null)
+            {
+                return null;
+            }
+
+            if (identity is int id)
+            {
+                var bike = m_DbContext.Bikes
+                .Include(a => a.N_BikeRates)
+                .ProjectTo<Bike>(m_Mapper.ConfigurationProvider)
+                .SingleOrDefault(a => a.ID == id);
+
+                return bike;
+            }
+
+            return null;
+        }
     }
 }

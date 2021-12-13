@@ -8,5 +8,11 @@ namespace BikeInventory.Models
 {
     public class RentalTransaction
     {
+        public Guid ID { get; set; }
+        public Bike Bike { get; set; }
+        public BikeRate BikeRate { get; set; }
+        public Customer Customer { get; set; }
+        public DateTime CheckedOut { get; set; }
+
     }
 }

@@ -23,9 +23,9 @@ namespace BikeInventory.AdminConsole
 
             var bikeModelRepository = ServiceProvider.GetService<IBikeModelRepository>();
 
-            var getAllBikes = bikeModelRepository.GetAll();
+            var getAllBikes = bikeModelRepository.Get().ToList();
 
-            Console.WriteLine("Hello World!");
+            Console.WriteLine($"Bikes: {getAllBikes.Count}");
         }
 
 

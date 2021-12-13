@@ -10,6 +10,7 @@ namespace BikeInventory.Interfaces
     public interface IGenericRepository<T> : IRepository where T : class
     {
         IQueryable<T> Get();
+        IQueryable<T> Get(Func<T, bool> filter);
 
         T Find(object identity);
         Task<T> FindAsync(object identity, CancellationToken cancellationToken = default);

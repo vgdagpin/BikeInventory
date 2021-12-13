@@ -10,6 +10,8 @@ namespace BikeInventory.Interfaces
 {
     public interface IPaymentRepository : IRepository
     {
+        IEnumerable<PaymentHandler> GetPaymentHandlers();
+
         Task<bool> TryPaymentAsync(RentalTransaction transaction, PaymentHandler payment, out PaymentResult paymentResult);
     }
 }

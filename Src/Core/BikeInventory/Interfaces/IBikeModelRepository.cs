@@ -10,6 +10,5 @@ namespace BikeInventory.Interfaces
 {
     public interface IBikeModelRepository  : IGenericRepository<BikeModel>
     {
-        IEnumerable<BikeModel> GetAll(Func<BikeModel, bool> filter = null);
     }
 }

@@ -55,7 +55,7 @@ namespace BikeInventory.Infrastructure.Persistence.Configurations
                 FirstName = "User",
                 LastName = "Staff 2",
                 Email = "staff2@bike.com"
-            });
+            });            
         }
     }
 }

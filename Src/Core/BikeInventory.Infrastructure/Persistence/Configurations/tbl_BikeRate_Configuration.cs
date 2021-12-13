@@ -32,7 +32,7 @@ namespace BikeInventory.Infrastructure.Persistence.Configurations
                 {
                     ID = i,
                     BikeID = i,
-                    EffectiveStartDate = SeedDataHelper.Now,
+                    IsActive = true,
                     RatePerMinute = 0.25m,
                 });
             }

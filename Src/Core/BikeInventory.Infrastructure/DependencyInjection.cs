@@ -7,6 +7,7 @@ using BikeInventory.Infrastructure.Common;
 using BikeInventory.Application.Cache;
 using BikeInventory.Infrastructure.Persistence;
 using BikeInventory.Application.Common.Interfaces;
+using BikeInventory.Interfaces;
 
 namespace BikeInventory.Infrastructure
 {
@@ -33,6 +34,7 @@ namespace BikeInventory.Infrastructure
 
             services.AddSingleton<IPasswordHasher, PasswordHasher>();
             services.AddSingleton<PaymentHandlerSettings>();
+            services.AddSingleton<IDateTime, AppDateTime>();
 
             return services;
         }

@@ -12,8 +12,7 @@ namespace BikeInventory.Application.Common.Entities
         public int BikeID { get; set; }
         public decimal RatePerMinute { get; set; }
 
-        public DateTime EffectiveStartDate { get; set; }
-        public DateTime? EffectiveEndDate { get; set; }
+        public bool IsActive { get; set; }
 
         public tbl_Bike N_Bike { get; set; }
     }

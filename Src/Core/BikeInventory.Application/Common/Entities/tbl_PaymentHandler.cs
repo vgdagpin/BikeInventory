@@ -11,6 +11,7 @@ namespace BikeInventory.Application.Common.Entities
         public short ID { get; set; }
         public string ShortDesc { get; set; }
         public string LongDesc { get; set; }
+        public bool IsActive { get; set; }
 
 
         public string TaskAssembly { get; set; }

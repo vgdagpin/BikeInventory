@@ -49,7 +49,12 @@ namespace BikeInventory.Kiosk
 
 
             services.AddMemoryCache();
-            services.AddControllersWithViews();
+
+            var mvcBuilder = services.AddControllersWithViews();
+
+#if DEBUG
+            mvcBuilder.AddRazorRuntimeCompilation();
+#endif
 
             services.AddAuthorization(options =>
             {

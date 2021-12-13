@@ -34,7 +34,7 @@ namespace BikeInventory.Kiosk.Common
             var identity = new ClaimsIdentity(new[]
             {
                 new Claim(ClaimTypes.Name, user.UserName),
-                new Claim(ClaimTypes.UserData, JsonSerializer.Serialize(mUserData))
+                new Claim(ClaimTypes.UserData, JsonSerializer.Serialize(mUserData)),
             }, Constants.IdentityConstants.ApplicationScheme);
 
             foreach (var role in mUserData.Roles)

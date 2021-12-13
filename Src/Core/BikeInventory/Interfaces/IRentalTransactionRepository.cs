@@ -8,10 +8,10 @@ using BikeInventory.Models;
 
 namespace BikeInventory.Interfaces
 {
-    public interface IRentalTransactionRepository : IRepository
+    public interface IRentalTransactionRepository : IGenericRepository<RentalTransaction>
     {
-        bool TryCheckOutBike(Bike bike, Customer customer, out CheckoutResult checkoutResult);
+        bool TryCheckOutBike(int bikeID, int staffID, int customerID, out CheckoutResult checkoutResult);
 
-        bool TryCheckInBike(Bike bike, Customer customer, out CheckinResult checkinResult);
+        bool TryCheckInBike(Guid transactionId, int staffID, out CheckinResult checkinResult);
     }
 }

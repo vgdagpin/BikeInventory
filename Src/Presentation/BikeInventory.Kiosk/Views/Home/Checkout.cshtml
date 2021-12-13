@@ -1,0 +1,18 @@
+﻿@model Checkout
+
+@{
+    if (Model.CheckoutResult is SuccessCheckoutResult successCheckout)
+    {
+        <div>Successfully checked out!</div>
+        <div>Ticket: @(successCheckout.Ticket.TransactionID)</div>
+        <div><a href="/Home/Checkin/@(successCheckout.Ticket.TransactionID)">Click to check in</a></div>
+    } 
+    else if (Model.CheckoutResult is FailedCheckoutResult failedCheckout)
+    {
+        <div>@(failedCheckout.Error.Message)</div>
+    }
+    else
+    {
+        <div>Invalid Request</div>
+    }
+}

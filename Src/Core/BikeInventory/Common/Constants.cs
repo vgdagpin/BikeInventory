@@ -20,6 +20,7 @@ namespace BikeInventory.Common
         {
             public const string Admin = "admin";
             public const string Staff = "staff";
+            public const string Customer = "Customer";
         }
 
         public abstract class PaymentService

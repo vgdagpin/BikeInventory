@@ -213,11 +213,8 @@ namespace BikeInventory.DbMigration.SqlServer.Migrations
                     b.Property<int>("BikeID")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("EffectiveEndDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("EffectiveStartDate")
-                        .HasColumnType("datetime2");
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
 
                     b.Property<decimal>("RatePerMinute")
                         .HasColumnType("DECIMAL(20,6)");
@@ -233,140 +230,140 @@ namespace BikeInventory.DbMigration.SqlServer.Migrations
                         {
                             ID = 1,
                             BikeID = 1,
-                            EffectiveStartDate = new DateTime(2021, 12, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
                             RatePerMinute = 0.25m
                         },
                         new
                         {
                             ID = 2,
                             BikeID = 2,
-                            EffectiveStartDate = new DateTime(2021, 12, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
                             RatePerMinute = 0.25m
                         },
                         new
                         {
                             ID = 3,
                             BikeID = 3,
-                            EffectiveStartDate = new DateTime(2021, 12, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
                             RatePerMinute = 0.25m
                         },
                         new
                         {
                             ID = 4,
                             BikeID = 4,
-                            EffectiveStartDate = new DateTime(2021, 12, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
                             RatePerMinute = 0.25m
                         },
                         new
                         {
                             ID = 5,
                             BikeID = 5,
-                            EffectiveStartDate = new DateTime(2021, 12, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
                             RatePerMinute = 0.25m
                         },
                         new
                         {
                             ID = 6,
                             BikeID = 6,
-                            EffectiveStartDate = new DateTime(2021, 12, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
                             RatePerMinute = 0.25m
                         },
                         new
                         {
                             ID = 7,
                             BikeID = 7,
-                            EffectiveStartDate = new DateTime(2021, 12, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
                             RatePerMinute = 0.25m
                         },
                         new
                         {
                             ID = 8,
                             BikeID = 8,
-                            EffectiveStartDate = new DateTime(2021, 12, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
                             RatePerMinute = 0.25m
                         },
                         new
                         {
                             ID = 9,
                             BikeID = 9,
-                            EffectiveStartDate = new DateTime(2021, 12, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
                             RatePerMinute = 0.25m
                         },
                         new
                         {
                             ID = 10,
                             BikeID = 10,
-                            EffectiveStartDate = new DateTime(2021, 12, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
                             RatePerMinute = 0.25m
                         },
                         new
                         {
                             ID = 11,
                             BikeID = 11,
-                            EffectiveStartDate = new DateTime(2021, 12, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
                             RatePerMinute = 0.25m
                         },
                         new
                         {
                             ID = 12,
                             BikeID = 12,
-                            EffectiveStartDate = new DateTime(2021, 12, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
                             RatePerMinute = 0.25m
                         },
                         new
                         {
                             ID = 13,
                             BikeID = 13,
-                            EffectiveStartDate = new DateTime(2021, 12, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
                             RatePerMinute = 0.25m
                         },
                         new
                         {
                             ID = 14,
                             BikeID = 14,
-                            EffectiveStartDate = new DateTime(2021, 12, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
                             RatePerMinute = 0.25m
                         },
                         new
                         {
                             ID = 15,
                             BikeID = 15,
-                            EffectiveStartDate = new DateTime(2021, 12, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
                             RatePerMinute = 0.25m
                         },
                         new
                         {
                             ID = 16,
                             BikeID = 16,
-                            EffectiveStartDate = new DateTime(2021, 12, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
                             RatePerMinute = 0.25m
                         },
                         new
                         {
                             ID = 17,
                             BikeID = 17,
-                            EffectiveStartDate = new DateTime(2021, 12, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
                             RatePerMinute = 0.25m
                         },
                         new
                         {
                             ID = 18,
                             BikeID = 18,
-                            EffectiveStartDate = new DateTime(2021, 12, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
                             RatePerMinute = 0.25m
                         },
                         new
                         {
                             ID = 19,
                             BikeID = 19,
-                            EffectiveStartDate = new DateTime(2021, 12, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
                             RatePerMinute = 0.25m
                         },
                         new
                         {
                             ID = 20,
                             BikeID = 20,
-                            EffectiveStartDate = new DateTime(2021, 12, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
                             RatePerMinute = 0.25m
                         });
                 });
@@ -374,11 +371,36 @@ namespace BikeInventory.DbMigration.SqlServer.Migrations
             modelBuilder.Entity("BikeInventory.Application.Common.Entities.tbl_Customer", b =>
                 {
                     b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("MiddleName")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("ID");
 
                     b.ToTable("tbl_Customer", "dbo");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            FirstName = "Customer",
+                            LastName = "A"
+                        });
                 });
 
             modelBuilder.Entity("BikeInventory.Application.Common.Entities.tbl_PaymentHandler", b =>
@@ -398,6 +420,9 @@ namespace BikeInventory.DbMigration.SqlServer.Migrations
                         .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
 
                     b.Property<string>("LongDesc")
                         .IsRequired()
@@ -429,8 +454,9 @@ namespace BikeInventory.DbMigration.SqlServer.Migrations
                             ID = (short)1,
                             HandlerAssembly = "BikeInventory.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
                             HandlerClass = "BikeInventory.Application.Handlers.Commands.PaymentCmds.PaymentCmdHandler_GCash",
-                            LongDesc = "GCash",
-                            ShortDesc = "GCash",
+                            IsActive = true,
+                            LongDesc = "Credits",
+                            ShortDesc = "Credits",
                             TaskAssembly = "BikeInventory, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
                             TaskClass = "BikeInventory.Commands.PaymentCmds.PaymentCmd"
                         },
@@ -438,7 +464,19 @@ namespace BikeInventory.DbMigration.SqlServer.Migrations
                         {
                             ID = (short)2,
                             HandlerAssembly = "BikeInventory.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            HandlerClass = "BikeInventory.Application.Handlers.Commands.PaymentCmds.PaymentCmdHandler_GCash",
+                            IsActive = true,
+                            LongDesc = "GCash",
+                            ShortDesc = "GCash",
+                            TaskAssembly = "BikeInventory, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            TaskClass = "BikeInventory.Commands.PaymentCmds.PaymentCmd"
+                        },
+                        new
+                        {
+                            ID = (short)3,
+                            HandlerAssembly = "BikeInventory.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
                             HandlerClass = "BikeInventory.Application.Handlers.Commands.PaymentCmds.PaymentCmdHandler_Paymaya",
+                            IsActive = true,
                             LongDesc = "Paymaya",
                             ShortDesc = "Paymaya",
                             TaskAssembly = "BikeInventory, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
@@ -664,6 +702,31 @@ namespace BikeInventory.DbMigration.SqlServer.Migrations
                         });
                 });
 
+            modelBuilder.Entity("BikeInventory.Application.Common.Entities.tbl_UserCredit", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("Credit")
+                        .HasColumnType("DECIMAL(20,6)");
+
+                    b.Property<string>("RecordStatus")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("tbl_UserCredit", "dbo");
+                });
+
             modelBuilder.Entity("BikeInventory.Application.Common.Entities.tbl_UserRole", b =>
                 {
                     b.Property<int>("UserID")
@@ -724,17 +787,6 @@ namespace BikeInventory.DbMigration.SqlServer.Migrations
                         .IsRequired();
 
                     b.Navigation("N_Bike");
-                });
-
-            modelBuilder.Entity("BikeInventory.Application.Common.Entities.tbl_Customer", b =>
-                {
-                    b.HasOne("BikeInventory.Application.Common.Entities.tbl_User", "N_User")
-                        .WithOne()
-                        .HasForeignKey("BikeInventory.Application.Common.Entities.tbl_Customer", "ID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("N_User");
                 });
 
             modelBuilder.Entity("BikeInventory.Application.Common.Entities.tbl_Receipt", b =>

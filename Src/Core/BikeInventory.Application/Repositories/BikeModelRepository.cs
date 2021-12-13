@@ -22,19 +22,12 @@ namespace BikeInventory.Application.Repositories
         {
         }
 
-        public virtual IEnumerable<BikeModel> GetAll(Func<BikeModel, bool> filter = null)
+        public override IQueryable<BikeModel> Get()
         {
-            var query = m_DbContext.BikeModels
-                .AsNoTracking()
-                .Include(a => a.N_Bikes.OrderBy(b => b.ID))
-                .ProjectTo<BikeModel>(m_Mapper.ConfigurationProvider);
-
-            if (filter != null)
-            {
-                return query.Where(filter).ToList();
-            }
-                
-            return query.ToList();
+            return m_DbContext.BikeModels
+               .AsNoTracking()
+               .Include(a => a.N_Bikes.OrderBy(b => b.ID)).ThenInclude(a => a.N_BikeRates)
+               .ProjectTo<BikeModel>(m_Mapper.ConfigurationProvider);
         }
     }
 }
