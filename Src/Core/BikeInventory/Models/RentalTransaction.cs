@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace BikeInventory.Models
 {
-    public class RentalTransaction
+    public class RentalTransaction : Ticket
     {
-        public Guid ID { get; set; }
         public Bike Bike { get; set; }
         public BikeRate BikeRate { get; set; }
         public Customer Customer { get; set; }

@@ -1,49 +1,65 @@
 ﻿@model Checkin
 
+@section Scripts
+{
+    <script>
+        $('.select-payment-handler').on('click', function(){
+            var paymentHandlerId = $(this).data('paymentHandlerId');
 
+            $('input[name=PaymentHandlerID]').val(paymentHandlerId);
+        });
+    </script>
+}
 
-<div class="container pt-4">
-    <div class="row">
-        <div class="col">
-            <h1>Payment<a class="btn btn-light pull-right" role="button" href="index.html">&lt;&lt;</a></h1>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12 col-sm-4 col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-6 col-sm-12 col-md-6">
-                            <h4>GCash</h4><a class="btn btn-light link-primary card-link" role="button" href="receipt.html">Pay</a>
-                        </div>
-                        <div class="col-6 col-sm-12 col-md-6 text-end"><i class="fa fa-dollar" style="font-size: 56px;"></i></div>
-                    </div>
+@{
+    if (Model.CheckinResult is SuccessCheckinResult successCheckinResult)
+    {
+        <form asp-action="Payment" class="container pt-4">
+            <div class="row">
+                <div class="col">
+                    <h1>Check in</h1>
+
+                    <div>Customer: @(successCheckinResult.Ticket.Customer.FullName)</div>
+                    <div>Bike ID: @(successCheckinResult.Ticket.Bike.ID)</div>
+                    <div>Bike Rate: @($"{successCheckinResult.Ticket.BikeRate.RatePerMinute:c2}")</div>
+                    <div>Checkout: @($"{successCheckinResult.Ticket.CheckedOut.AddHours(8):MM/dd/yyyy hh:mm:ss tt}")</div>
+                    <hr />
+                    <div>Total Minutes: @($"{successCheckinResult.TotalMinutes:n0} minute/s")</div>
+                    <div>Total Payable: @($"{successCheckinResult.TotalAmount:c2}")</div>
                 </div>
             </div>
-        </div>
-        <div class="col-12 col-sm-4 col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-6 col-sm-12 col-md-6">
-                            <h4>GCash</h4><a class="btn btn-light link-primary card-link" role="button" href="receipt.html">Pay</a>
+            <div class="row mt-5">
+                <input name="TransactionID" type="hidden" value="@(successCheckinResult.Ticket.TransactionID)" />
+                <input name="PaymentHandlerID" type="hidden" />
+
+                @{
+                    foreach (var paymentHandler in Model.PaymentHandlers)
+                    {
+                        <div class="col-12 col-sm-4 col-md-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-6 col-sm-12 col-md-6">
+                                            <h4>@(paymentHandler.ShortDesc)</h4>
+                                            <button type="submit" class="btn btn-light link-primary card-link select-payment-handler" data-payment-handler-id="@(paymentHandler.ID)" role="button">Pay</button>
+                                        </div>
+                                        <div class="col-6 col-sm-12 col-md-6 text-end"><i class="fa fa-dollar" style="font-size: 56px;"></i></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-6 col-sm-12 col-md-6 text-end"><i class="fa fa-dollar" style="font-size: 56px;"></i></div>
-                    </div>
-                </div>
+                    }
+                }
             </div>
-        </div>
-        <div class="col-12 col-sm-4 col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-6 col-sm-12 col-md-6">
-                            <h4>GCash</h4><a class="btn btn-light link-primary card-link" role="button" href="receipt.html">Pay</a>
-                        </div>
-                        <div class="col-6 col-sm-12 col-md-6 text-end"><i class="fa fa-dollar" style="font-size: 56px;"></i></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+        </form>
+    } 
+    else if (Model.CheckinResult is FailedCheckinResult failedCheckinResult)
+    {
+        <div>@(failedCheckinResult.Error.Message)</div>
+    }
+    else
+    {
+        <div>Invalid Request</div>
+    }
+}
+

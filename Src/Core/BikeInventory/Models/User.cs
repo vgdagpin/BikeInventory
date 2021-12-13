@@ -13,6 +13,8 @@ namespace BikeInventory.Models
         public string MiddleName { get; set; }
         public string LastName { get; set; }
 
+        public int HoursFromUTC { get; set; } = 8;
+
         public string[] Roles { get; set; }
     }
 }

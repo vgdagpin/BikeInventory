@@ -49,18 +49,6 @@ namespace BikeInventory.Infrastructure.Persistence.Configurations
             builder.HasData(new tbl_PaymentHandler
             {
                 ID = 1,
-                ShortDesc = "Credits",
-                LongDesc = "Credits",
-                TaskAssembly = typeof(PaymentCmd).Assembly.FullName,
-                TaskClass = typeof(PaymentCmd).FullName,
-                HandlerAssembly = typeof(PaymentCmdHandler_GCash).Assembly.FullName,
-                HandlerClass = typeof(PaymentCmdHandler_GCash).FullName,
-                IsActive = true
-            });
-
-            builder.HasData(new tbl_PaymentHandler
-            {
-                ID = 2,
                 ShortDesc = "GCash",
                 LongDesc = "GCash",
                 TaskAssembly = typeof(PaymentCmd).Assembly.FullName,
@@ -72,7 +60,7 @@ namespace BikeInventory.Infrastructure.Persistence.Configurations
 
             builder.HasData(new tbl_PaymentHandler
             {
-                ID = 3,
+                ID = 2,
                 ShortDesc = "Paymaya",
                 LongDesc = "Paymaya",
                 TaskAssembly = typeof(PaymentCmd).Assembly.FullName,

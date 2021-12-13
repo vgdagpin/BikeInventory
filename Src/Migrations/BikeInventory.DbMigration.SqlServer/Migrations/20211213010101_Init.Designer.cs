@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BikeInventory.DbMigration.SqlServer.Migrations
 {
     [DbContext(typeof(BikeInventoryDbContext))]
-    [Migration("20211212231642_Init")]
+    [Migration("20211213010101_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -457,17 +457,6 @@ namespace BikeInventory.DbMigration.SqlServer.Migrations
                             HandlerAssembly = "BikeInventory.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
                             HandlerClass = "BikeInventory.Application.Handlers.Commands.PaymentCmds.PaymentCmdHandler_GCash",
                             IsActive = true,
-                            LongDesc = "Credits",
-                            ShortDesc = "Credits",
-                            TaskAssembly = "BikeInventory, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-                            TaskClass = "BikeInventory.Commands.PaymentCmds.PaymentCmd"
-                        },
-                        new
-                        {
-                            ID = (short)2,
-                            HandlerAssembly = "BikeInventory.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-                            HandlerClass = "BikeInventory.Application.Handlers.Commands.PaymentCmds.PaymentCmdHandler_GCash",
-                            IsActive = true,
                             LongDesc = "GCash",
                             ShortDesc = "GCash",
                             TaskAssembly = "BikeInventory, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
@@ -475,7 +464,7 @@ namespace BikeInventory.DbMigration.SqlServer.Migrations
                         },
                         new
                         {
-                            ID = (short)3,
+                            ID = (short)2,
                             HandlerAssembly = "BikeInventory.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
                             HandlerClass = "BikeInventory.Application.Handlers.Commands.PaymentCmds.PaymentCmdHandler_Paymaya",
                             IsActive = true,

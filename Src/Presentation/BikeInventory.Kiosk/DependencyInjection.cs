@@ -52,10 +52,6 @@ namespace BikeInventory.Kiosk
 
             var mvcBuilder = services.AddControllersWithViews();
 
-#if DEBUG
-            mvcBuilder.AddRazorRuntimeCompilation();
-#endif
-
             services.AddAuthorization(options =>
             {
                 options.AddPolicy(Constants.Policy.Administrator, policy =>

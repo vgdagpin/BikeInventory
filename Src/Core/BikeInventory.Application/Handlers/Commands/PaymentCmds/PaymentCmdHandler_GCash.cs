@@ -39,7 +39,7 @@ namespace BikeInventory.Application.Handlers.Commands.PaymentCmds
 
             if (!paymentRequest.IsSuccessStatusCode)
             {
-                var ex = PaymentRequestException.Parse(await paymentRequest.Content.ReadAsStringAsync());
+                var ex = await PaymentRequestException.Parse(paymentRequest);
 
                 p_Logger.LogError(ex, ex.Message);
 
@@ -49,7 +49,13 @@ namespace BikeInventory.Application.Handlers.Commands.PaymentCmds
                 };
             }
 
-            return new SuccessPaymentResult();
+            return new SuccessPaymentResult
+            {
+                Ticket = new Ticket
+                {
+                    TransactionID = request.TransactionID
+                }
+            };
         }
     }
 }

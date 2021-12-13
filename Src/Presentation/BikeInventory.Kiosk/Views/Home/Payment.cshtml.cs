@@ -4,8 +4,12 @@ namespace BikeInventory.Kiosk.Views.Home
 {
     public class PaymentViewModel
     {
-        public IEnumerable<PaymentHandler> PaymentHandlers { get; set; } = new List<PaymentHandler>();
-        public Ticket Ticket { get; set; }
-        public Bike Bike { get; set; }
+        public PaymentResult PaymentResult { get; set; }
+    }
+
+    public class PaymentPayload
+    {
+        public Guid TransactionID { get; set; }
+        public short PaymentHandlerID { get; set; }
     }
 }

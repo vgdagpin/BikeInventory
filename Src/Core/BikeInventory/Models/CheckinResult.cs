@@ -8,21 +8,18 @@ namespace BikeInventory.Models
 {
     public class CheckinResult
     {
+
     }
 
-    public class SuccessCheckinResult
+    public class SuccessCheckinResult : CheckinResult
     {
-        public Guid TransactionID { get; set; }
+        public RentalTransaction Ticket { get; set; }
 
-        public DateTime CheckoutTime { get; set; }
-        public DateTime CheckinTime { get; set; }
-        public long DurationInMinutes { get; set; }
-
-        public decimal RatePerMinute { get; set; }
-        public decimal TotalPayable { get; set; }
+        public decimal TotalMinutes { get; set; }
+        public decimal TotalAmount { get; set; }
     }
 
-    public class FailedCheckinResult
+    public class FailedCheckinResult : CheckinResult
     {
         public Exception Error { get; set; }
     }

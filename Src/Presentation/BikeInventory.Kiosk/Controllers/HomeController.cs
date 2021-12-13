@@ -94,51 +94,33 @@ namespace BikeInventory.Kiosk.Controllers
         [HttpGet("/Home/Checkin/{transactionID}")]
         public IActionResult Checkin(Guid transactionID)
         {
-            var rentalTransaction = p_RentalTransactionRepository.Find(transactionID);
+            p_RentalTransactionRepository.TryCheckInBike(transactionID, User.GetUserData().ID, out CheckinResult checkinResult);
 
             var model = new Checkin
             {
-                Ticket = rentalTransaction,
-                PaymentHandlers = p_PaymentRepository.GetPaymentHandlers()
+                PaymentHandlers = p_PaymentRepository.GetPaymentHandlers(),
+                CheckinResult = checkinResult
             };
 
             return View(model);
         }
 
         [HttpPost]
-        public IActionResult Payment(Bike data)
+        public async Task<IActionResult> Payment(PaymentPayload payload)
         {
-            //var bike = p_BikeRepository.Find(data.ID);
+            var paymentResult =  await p_PaymentRepository.ProcessPayment(payload.PaymentHandlerID, payload.TransactionID);
 
-            //if (bike == null)
-            //    return NotFound();
-
-            //if (bike.Status != Enums.BikeStatus.Available)
-            //{
-            //    return NotFound();
-            //}
-
-            //if (!p_RentalTransactionRepository.TryCheckOutBike(bike, User.GetUserData(), out CheckoutResult checkoutResult))
-            //{
-            //    var failedCheckout = checkoutResult as FailedCheckoutResult;
-
-            //    return NotFound();
-            //}
-
-            //var paymentViewModel = new PaymentViewModel
-            //{
-            //    PaymentHandlers = p_PaymentRepository.GetPaymentHandlers(),
-            //    Bike = bike,
-            //    Ticket = (checkoutResult as SuccessCheckoutResult).Ticket
-            //};
-
-            //return View(paymentViewModel);
-            throw new NotImplementedException();
+            return View(new PaymentViewModel
+            {
+                PaymentResult = paymentResult
+            });
         }
 
         public IActionResult Receipt(Payment payment)
         {
-            return View();
+            p_RentalTransactionRepository.ProcessCheckInBike(payment.TransactionID);
+
+            return Redirect("/");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

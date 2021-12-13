@@ -24,7 +24,7 @@ namespace BikeInventory.Application.Handlers.Commands.PaymentCmds
 
         public PaymentCmdHandler_Paymaya(IHttpClientFactory clientFactory, ILogger<PaymentCmdHandler_Paymaya> logger)
         {
-            p_HttpClient = clientFactory.CreateClient(Constants.PaymentService.GCash.HttpClientName);
+            p_HttpClient = clientFactory.CreateClient(Constants.PaymentService.Paymaya.HttpClientName);
             p_Logger = logger;
         }
 
@@ -39,7 +39,7 @@ namespace BikeInventory.Application.Handlers.Commands.PaymentCmds
 
             if (!paymentRequest.IsSuccessStatusCode)
             {
-                var ex = PaymentRequestException.Parse(await paymentRequest.Content.ReadAsStringAsync());
+                var ex = await PaymentRequestException.Parse(paymentRequest);
 
                 p_Logger.LogError(ex, ex.Message);
 
@@ -49,7 +49,13 @@ namespace BikeInventory.Application.Handlers.Commands.PaymentCmds
                 };
             }
 
-            return new SuccessPaymentResult();
+            return new SuccessPaymentResult
+            {
+                Ticket = new Ticket
+                {
+                    TransactionID = request.TransactionID
+                }
+            };
         }
     }
 }

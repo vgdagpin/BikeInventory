@@ -47,6 +47,7 @@ namespace BikeInventory.PaymentGateway.Paymaya.Controllers
         }
 
         [HttpPost]
+        [Route("/SendPayment")]
         public PaymentResult SendPayment([FromBody] Ticket ticket)
         {
             var retVal = new SuccessPaymentResult

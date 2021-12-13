@@ -8,5 +8,6 @@ namespace BikeInventory.Models
 {
     public class Payment
     {
+        public Guid TransactionID { get; set; }
     }
 }

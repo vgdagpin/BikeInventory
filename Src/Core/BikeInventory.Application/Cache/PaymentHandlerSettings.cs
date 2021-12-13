@@ -21,15 +21,18 @@ namespace BikeInventory.Application.Cache
             {
                 if (_paymentHandlerSettings == null)
                 {
-                    var dbContext = p_ServiceProvider.GetService<IBikeInventoryDbContext>();
+                    using (var newScope = p_ServiceProvider.CreateScope())
+                    {
+                        var dbContext = newScope.ServiceProvider.GetService<IBikeInventoryDbContext>();
 
-                    _paymentHandlerSettings = dbContext.PaymentHandlerSettings
-                        .Select(x => new
-                        {
-                            Key = x.Type + ":" + x.Code,
-                            Value = x.Value
-                        })
-                        .ToDictionary(a => a.Key, a => a.Value);
+                        _paymentHandlerSettings = dbContext.PaymentHandlerSettings
+                            .Select(x => new
+                            {
+                                Key = x.Type + ":" + x.Code,
+                                Value = x.Value
+                            })
+                            .ToDictionary(a => a.Key, a => a.Value);
+                    }                   
                 }
 
                 if (!_paymentHandlerSettings.ContainsKey(key))

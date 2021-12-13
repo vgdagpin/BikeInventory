@@ -13,5 +13,7 @@ namespace BikeInventory.Interfaces
         bool TryCheckOutBike(int bikeID, int staffID, int customerID, out CheckoutResult checkoutResult);
 
         bool TryCheckInBike(Guid transactionId, int staffID, out CheckinResult checkinResult);
+
+        void ProcessCheckInBike(Guid transactionId);
     }
 }

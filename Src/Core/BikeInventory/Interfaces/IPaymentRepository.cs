@@ -13,5 +13,9 @@ namespace BikeInventory.Interfaces
         IEnumerable<PaymentHandler> GetPaymentHandlers();
 
         Task<bool> TryPaymentAsync(RentalTransaction transaction, PaymentHandler payment, out PaymentResult paymentResult);
+        decimal CalculateElapsedMinutes(RentalTransaction ticket);
+        decimal CalculateTotalAmount(RentalTransaction ticket);
+
+        Task<PaymentResult> ProcessPayment(short paymentHandlerID, Guid transactionID);
     }
 }

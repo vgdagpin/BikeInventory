@@ -21,10 +21,12 @@ namespace BikeInventory.Application.Repositories
     internal class RentalTransactionRepository : GenericRepository<RentalTransaction>, IRentalTransactionRepository
     {
         private readonly IDateTime p_DateTime;
+        private readonly IPaymentRepository p_PaymentRepository;
 
-        public RentalTransactionRepository(IBikeInventoryDbContext dbContext, IMapper mapper, IDateTime dateTime) : base(dbContext, mapper)
+        public RentalTransactionRepository(IBikeInventoryDbContext dbContext, IMapper mapper, IDateTime dateTime, IPaymentRepository paymentRepository) : base(dbContext, mapper)
         {
             p_DateTime = dateTime;
+            p_PaymentRepository = paymentRepository;
         }
 
 
@@ -35,7 +37,7 @@ namespace BikeInventory.Application.Repositories
                 .Include(a => a.N_BikeRate)
                 .Include(a => a.N_Customer)
                 .ProjectTo<RentalTransaction>(m_Mapper.ConfigurationProvider)
-                .SingleOrDefault(a => a.ID == (Guid)identity);
+                .SingleOrDefault(a => a.TransactionID == (Guid)identity);
         }
 
         public bool TryCheckOutBike(int bikeID, int staffID, int customerID, out CheckoutResult checkoutResult)
@@ -88,9 +90,42 @@ namespace BikeInventory.Application.Repositories
 
         public bool TryCheckInBike(Guid transactionId, int staffID, out CheckinResult checkinResult)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var rentalTransaction = Find(transactionId);
+
+                checkinResult = new SuccessCheckinResult
+                {
+                    Ticket = rentalTransaction,
+                    TotalMinutes = p_PaymentRepository.CalculateElapsedMinutes(rentalTransaction),
+                    TotalAmount = p_PaymentRepository.CalculateTotalAmount(rentalTransaction)
+                };
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                checkinResult = new FailedCheckinResult
+                {
+                    Error = ex
+                };
+
+                return false;
+            }
         }
 
-        
+        public void ProcessCheckInBike(Guid transactionId)
+        {
+            var rentalTransaction = Find(transactionId);
+
+            var bike = m_DbContext.Bikes.SingleOrDefault(a => a.ID == rentalTransaction.Bike.ID);
+
+            if (bike != null)
+            {
+                bike.Status = Enums.BikeStatus.Available;
+
+                m_DbContext.SaveChanges();
+            }
+        }
     }
 }

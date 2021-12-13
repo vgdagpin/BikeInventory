@@ -27,7 +27,9 @@ namespace BikeInventory.Application.MappingProfiles
             CreateMap<tbl_BikeRate, BikeRate>();
             CreateMap<tbl_PaymentHandler, PaymentHandler>();
             CreateMap<tbl_Customer, Customer>();
-            CreateMap<tbl_RentalTransaction, RentalTransaction>();
+            CreateMap<tbl_RentalTransaction, RentalTransaction>()
+                .ForMember(a => a.TransactionID, a => a.MapFrom(b => b.ID));
+
             CreateMap<tbl_PaymentHandler, PaymentHandler>();
         }
     }

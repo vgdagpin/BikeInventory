@@ -292,9 +292,8 @@ namespace BikeInventory.DbMigration.SqlServer.Migrations
                 columns: new[] { "ID", "HandlerAssembly", "HandlerClass", "IsActive", "LongDesc", "ShortDesc", "TaskAssembly", "TaskClass" },
                 values: new object[,]
                 {
-                    { (short)1, "BikeInventory.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "BikeInventory.Application.Handlers.Commands.PaymentCmds.PaymentCmdHandler_GCash", true, "Credits", "Credits", "BikeInventory, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "BikeInventory.Commands.PaymentCmds.PaymentCmd" },
-                    { (short)2, "BikeInventory.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "BikeInventory.Application.Handlers.Commands.PaymentCmds.PaymentCmdHandler_GCash", true, "GCash", "GCash", "BikeInventory, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "BikeInventory.Commands.PaymentCmds.PaymentCmd" },
-                    { (short)3, "BikeInventory.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "BikeInventory.Application.Handlers.Commands.PaymentCmds.PaymentCmdHandler_Paymaya", true, "Paymaya", "Paymaya", "BikeInventory, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "BikeInventory.Commands.PaymentCmds.PaymentCmd" }
+                    { (short)1, "BikeInventory.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "BikeInventory.Application.Handlers.Commands.PaymentCmds.PaymentCmdHandler_GCash", true, "GCash", "GCash", "BikeInventory, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "BikeInventory.Commands.PaymentCmds.PaymentCmd" },
+                    { (short)2, "BikeInventory.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "BikeInventory.Application.Handlers.Commands.PaymentCmds.PaymentCmdHandler_Paymaya", true, "Paymaya", "Paymaya", "BikeInventory, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "BikeInventory.Commands.PaymentCmds.PaymentCmd" }
                 });
 
             migrationBuilder.InsertData(
